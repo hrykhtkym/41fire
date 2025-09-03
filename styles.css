@@ -1,0 +1,9 @@
+/* 追加のスタイル（任意）。index.html のインラインで最低限を定義済み */
+/* ここでは拡張スタイルやメディアクエリを記述可能 */
+
+@media (min-width: 640px){
+  main{ grid-template-columns: 1fr 1fr; }
+  .scanner{ grid-column: 1 / 2; }
+  .cart{ grid-column: 2 / 3; }
+}
+
