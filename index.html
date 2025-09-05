@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0ea5e9" />
-  <title>かいもの計算</title>
+  <title>買い物計算</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,7 +14,7 @@
 </head>
 <body>
   <header class="app-bar">
-    <h1>かいもの</h1>
+    <h1>買い物</h1>
     <div class="spacer"></div>
     <button id="installBtn" class="btn ghost" hidden>インストール</button>
   </header>
@@ -26,57 +26,57 @@
         <div class="reticle"></div>
       </div>
       <div class="controls">
-        <button id="startBtn" class="btn primary">カメラをひらく</button>
-        <button id="readBtn" class="btn">よみとる（ねだん）</button>
-        <button id="manualBtn" class="btn">て入力</button>
-        <button id="stopBtn" class="btn" disabled>とめる</button>
+        <button id="startBtn" class="btn primary">カメラを開く</button>
+        <button id="readBtn" class="btn">読み取る（値段）</button>
+        <button id="manualBtn" class="btn">手入力</button>
+        <button id="stopBtn" class="btn" disabled>停止</button>
       </div>
-      <p id="status" class="status">画面にねだんのラベルを見せてください</p>
+      <p id="status" class="status">画面に値札を見せてください</p>
     </section>
 
     <section class="cart">
       <div class="cart-header">
-        <h2>かご</h2>
+        <h2>買い物かご</h2>
         <div class="cart-actions">
           <details>
-            <summary>せってい</summary>
+            <summary>設定</summary>
             <div class="settings">
               <label class="tax">税
                 <input type="number" id="taxRate" min="0" max="100" step="0.1" value="10" />%
               </label>
-              <label class="round">まるめ
+              <label class="round">端数処理
                 <select id="rounding">
-                  <option value="ceil" selected>きりあげ</option>
-                  <option value="round">まるめ</option>
-                  <option value="floor">きりすて</option>
+                  <option value="ceil" selected>切り上げ</option>
+                  <option value="round">四捨五入</option>
+                  <option value="floor">切り捨て</option>
                 </select>
               </label>
             </div>
           </details>
-          <button id="clearCartBtn" class="btn warn">かごを空に</button>
+          <button id="clearCartBtn" class="btn warn">かごを空にする</button>
         </div>
       </div>
       <ul id="cartList" class="cart-list"></ul>
       <div class="totals">
-        <div><span>しょうけい</span><span id="subtotal">¥0</span></div>
+        <div><span>小計</span><span id="subtotal">¥0</span></div>
         <div><span>税</span><span id="tax">¥0</span></div>
-        <div class="grand"><span>ごうけい</span><span id="total">¥0</span></div>
+        <div class="grand"><span>合計</span><span id="total">¥0</span></div>
       </div>
     </section>
 
   </main>
 
-  <!-- ねだん確認モーダル -->
+  <!-- 価格確認モーダル -->
   <dialog id="priceDialog">
     <form method="dialog" id="priceForm">
       <h3>これでよろしいですか？</h3>
       <div class="field big">
-        <label>ねだん（円・税抜）
+        <label>税抜価格（円）
           <input id="priceInput" type="number" inputmode="numeric" min="0" step="1" required />
         </label>
       </div>
       <div class="field big">
-        <label>かず
+        <label>数量
           <input id="qtyInput" type="number" inputmode="numeric" min="1" step="1" value="1" required />
         </label>
       </div>
@@ -98,11 +98,11 @@
 </body>
 <style>
 /* 小さな内蔵スタイル（早期表示用） */
-body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; margin: 0; color: #0b1324; font-size: 18px; }
-.app-bar { display:flex; align-items:center; gap:8px; padding:14px 18px; background:#0ea5e9; color:#fff; position:sticky; top:0; z-index:10; }
-.app-bar h1{ font-size:22px; margin:0; letter-spacing: 1px; }
+body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; margin: 0; color: #0b1324; font-size: 20px; }
+.app-bar { display:flex; align-items:center; gap:8px; padding:16px 20px; background:#0ea5e9; color:#fff; position:sticky; top:0; z-index:10; }
+.app-bar h1{ font-size:26px; margin:0; letter-spacing: 1px; }
 .spacer{ flex:1; }
-.btn{ padding:12px 16px; border-radius:10px; border:1px solid #cfd8e3; background:#fff; color:#0b1324; font-size:18px; }
+.btn{ padding:16px 22px; border-radius:12px; border:1px solid #cfd8e3; background:#fff; color:#0b1324; font-size:20px; }
 .btn.primary{ background:#0ea5e9; color:#fff; border-color:#0ea5e9; }
 .btn.warn{ background:#fee2e2; color:#991b1b; border-color:#fecaca; }
 .btn.ghost{ background:transparent; color:#fff; border-color:rgba(255,255,255,0.6); }
@@ -110,24 +110,24 @@ main{ padding:12px; display:grid; gap:16px; }
 .video-wrap{ position:relative; background:#000; border-radius:12px; overflow:hidden; }
 video{ width:100%; height:auto; display:block; }
 .reticle{ position:absolute; inset:10% 15%; border:2px dashed rgba(255,255,255,0.7); border-radius:10px; }
-.controls{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
-.status{ color:#1f2937; font-size:16px; margin:8px 2px; }
+.controls{ display:flex; gap:12px; margin-top:12px; flex-wrap:wrap; }
+.status{ color:#1f2937; font-size:18px; margin:10px 2px; }
 .cart-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .cart-actions{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .cart-list{ list-style:none; padding:0; margin:0; display:grid; gap:8px; }
-.cart-item{ display:grid; grid-template-columns: 1fr auto auto auto; align-items:center; gap:10px; padding:12px; border:1px solid #e2e8f0; border-radius:12px; }
-.cart-item .yen{ text-align:left; min-width:100px; font-size:20px; font-weight:700; }
+.cart-item{ display:grid; grid-template-columns: 1fr auto auto auto; align-items:center; gap:12px; padding:14px; border:1px solid #e2e8f0; border-radius:12px; }
+.cart-item .yen{ text-align:left; min-width:120px; font-size:22px; font-weight:700; }
 .cart-item .qty{ display:flex; align-items:center; gap:8px; }
-.cart-item .qty-btn{ font-size:20px; padding:10px 14px; }
-.cart-item input[type=number]{ width:80px; font-size:18px; }
+.cart-item .qty-btn{ font-size:24px; padding:12px 16px; }
+.cart-item input[type=number]{ width:100px; font-size:20px; }
 .totals{ margin-top:8px; display:grid; gap:6px; }
 .totals > div{ display:flex; justify-content:space-between; }
-.totals .grand{ font-weight:800; font-size:22px; }
+.totals .grand{ font-weight:800; font-size:26px; }
 dialog{ border:none; border-radius:12px; padding:16px; }
 dialog::backdrop{ background:rgba(0,0,0,0.3); }
 .field{ margin:8px 0; display:block; }
-.field.big input{ font-size:20px; padding:10px; }
-label{ display:flex; gap:8px; align-items:center; }
+.field.big input{ font-size:22px; padding:12px; }
+label{ display:flex; gap:10px; align-items:center; }
 summary{ cursor:pointer; }
 </style>
 </html>
